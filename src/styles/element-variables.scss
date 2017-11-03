@@ -1,0 +1,55 @@
+// // 响应式布局中 sm 的断点值
+// $--sm: 768px;
+
+// // 响应式布局中 md 的断点值
+// $--md: 992px;
+
+// // 响应式布局中 lg 的断点值
+// $--lg: 1200px;
+
+// // 响应式布局中 xl 的断点值
+// $--xl: 1920px;
+
+// 主题色
+$--color-primary: teal; // #409EFF;
+
+// // 表示「成功」的状态色
+// $--color-success: #67C23A;
+
+// // 表示「警告」的状态色
+// $--color-warning: #EB9E05;
+
+// // 表示「危险」的状态色
+// $--color-danger: #FA5555;
+
+// // 表示「信息」的状态色
+// $--color-info: #878D99;
+
+// // 主要文字色
+// $--color-text-primary: #2D2F33;
+
+// // 常规文字色
+// $--color-text-regular: #5A5E66;
+
+// // 次要文字色
+// $--color-text-secondary: #878D99;
+
+// // 占位文字色
+// $--color-text-placeholder: #B4BCCC;
+
+// // 一级边框
+// $--border-color-base: #D8DCE5;
+
+// // 二级边框
+// $--border-color-light: #DFE4ED;
+
+// // 三级边框
+// $--border-color-lighter: #E6EBF5;
+
+// // 四级边框
+// $--border-color-extra-light: #EDF2FC;
+
+// icon 字体图标路径
+$--font-path: '../../node_modules/element-ui/lib/theme-chalk/fonts';
+
+@import "../../node_modules/element-ui/packages/theme-chalk/src/index";
