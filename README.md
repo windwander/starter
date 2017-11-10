@@ -39,6 +39,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 6. 异步数据：[axios](https://github.com/axios/axios)
 
+7. 页面加载进度条：[Vue-progressbar](https://github.com/hilongjw/vue-progressbar)
+
 ## 开发时的配置
 
 1. proxy转发
