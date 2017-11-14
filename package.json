@@ -11,8 +11,10 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "axios": "^0.17.0",
     "element-ui": "^2.0.3",
+    "font-awesome": "^4.7.0",
     "vue": "^2.5.3",
     "vue-amap": "^0.3.1",
     "vue-echarts": "^2.4.1",

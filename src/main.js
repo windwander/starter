@@ -4,6 +4,7 @@ import Vue from 'vue'
 import VueProgressBar from 'vue-progressbar'
 import App from './App'
 import ElementUI from 'element-ui'
+import store from './store'
 import router from './router'
 import './styles/element-variables.scss'
 
@@ -28,6 +29,7 @@ Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App }

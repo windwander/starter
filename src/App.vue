@@ -1,13 +1,59 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <el-container direction="vertical" id="app">
     <vue-progress-bar></vue-progress-bar>
-  </div>
+    <rtHeader></rtHeader>
+    <div direction="horizontal">
+      <el-container direction="vertical">
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+        <rtFooter></rtFooter>
+      </el-container>
+    </div>
+  </el-container>
 </template>
 
 <script>
+import Vue from 'vue'
+import { mapState, mapMutations } from 'vuex'
+import { Container, Main } from 'element-ui'
+import 'font-awesome/css/font-awesome.css'
+import rtHeader from './components/Header'
+import rtFooter from './components/Footer'
+
+Vue.use(Container)
+Vue.use(Main)
 export default {
   name: 'app',
+  components: {
+    rtHeader,
+    rtFooter
+  },
+  computed: {
+    ...mapState([
+      'device'
+    ])
+  },
+  methods: {
+    ...mapMutations([
+      'setDevice'
+    ])
+  },
+  beforeMount () {
+    const { body } = document
+    const minDesktopWidth = 784
+    const deviceChange = () => {
+      if (!document.hidden) {
+        let rect = body.getBoundingClientRect()
+        this.setDevice({
+          isMobile: rect.width < minDesktopWidth
+        })
+      }
+    }
+    document.addEventListener('visibilitychange', deviceChange)
+    window.addEventListener('DOMContentLoaded', deviceChange)
+    window.addEventListener('resize', deviceChange)
+  },
   mounted () {
     //  [App.vue specific] When App.vue is finish loading finish the progress bar
     this.$Progress.finish()
@@ -37,7 +83,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul {
+  margin: 0;
+  padding: 0;
+}
+*, :after, :before {
+  box-sizing: border-box;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
