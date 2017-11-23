@@ -2,12 +2,12 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <el-button type="primary">主要按钮</el-button>
-    <!-- <div style="height: 300px">
+    <div style="height: 300px">
       <el-amap vid="amapDemo" :zoom="zoom" :center="center"></el-amap>
     </div>
     <div>
       <chart :options="polar"></chart>
-    </div> -->
+    </div>
   </div>
 </template>
 

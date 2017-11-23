@@ -5,12 +5,14 @@
     </a>
     <nav class="navbar">
       <NavMenu></NavMenu>
-      <el-dropdown class="nav-user">
-        <span>
-          用户<i class="el-icon-arrow-down el-icon--right"></i>
+      <el-dropdown v-if="authCode" class="nav-user" trigger="hover" placement="bottom" @command="userMenu">
+        <span class="label">
+          用户
         </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>退出登录</el-dropdown-item>
+        <el-dropdown-menu slot="dropdown" class="page-header-user-dropdown">
+          <el-dropdown-item command="logout">
+            <div class="logout">退出</div>
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </nav>
@@ -29,7 +31,6 @@ Vue.use(DropdownMenu)
 export default {
   data () {
     return {
-      // collapseSideNav: true
     }
   },
   components: {
@@ -37,8 +38,20 @@ export default {
   },
   computed: {
     ...mapState([
-      'device'
+      'device',
+      'authCode'
     ])
+  },
+  methods: {
+    userMenu (command) {
+      this[command]()
+    },
+    logout () {
+      sessionStorage.clear()
+      this.$router.push({
+        name: 'Login'
+      })
+    }
   }
 }
 </script>
@@ -49,7 +62,7 @@ export default {
   height: 50px;
   padding: 0 10px;
   text-align: left;
-  background-color: #091d2b;
+  background-color: #353a4c;
   box-shadow: 0 2px 3px rgba(18, 18, 18, 0.1), 0 0 0 1px rgba(18, 18, 18, 0.1);
 }
 .logo {
@@ -73,33 +86,29 @@ export default {
   justify-content: space-between;
   flex: 1;
   padding: 0 20px;
-  .sidebar-toggle {
-    display: inline-block;
-    color: #fff;
-    padding: 15px;
-  }
-  .sidebar-toggle:hover {
-    background-color: #334755;
+  .nav-user {
+    cursor: pointer;
+    line-height: 50px;
+    .label {
+      display: block;
+      padding-left: 30px;
+      color: #ccc;
+      background-image: url(/static/images/avatar.png);
+      background-repeat: no-repeat;
+      background-size: 24px;
+      background-position: left center;
+    }
   }
 }
-// .side-nav-collapse {
-//   .logo {
-//     margin-left: 0;
-//     .title {
-//       display: none;
-//     }
-//   }
-// }
-.nav-user {
-  color: #f0f0f0;
-  cursor: pointer;
-  line-height: 50px;
-  .nav-user-btn {
-  }
+.logout {
+  padding-left: 30px;
+  background-image: url(/static/images/logout.png);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: left center;
 }
 /* 移动样式 */
 .header-mobile .logo .title {
   display: none;
 }
 </style>
-

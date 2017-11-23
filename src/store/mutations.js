@@ -1,21 +1,11 @@
+import { Message } from 'element-ui'
+
 export const state = {
   device: {
     isMobile: false
   },
-  collapseSideNav: false,
-  toast: {
-    show: false,
-    time: 2000,
-    type: 'warn', // success, warn, cancel, text
-    text: ''
-  },
-  loading: {
-    show: false,
-    text: ''
-  },
-  pintuanProduct: {},
-  pintuanMyGroup: {},
-  pintuanAllGroup: {}
+  navMenus: JSON.parse(sessionStorage.getItem('nav')),
+  authCode: sessionStorage.getItem('auth')
 }
 
 export const mutations = {
@@ -27,16 +17,35 @@ export const mutations = {
   toggleSideNav (state) {
     state.collapseSideNav = !state.collapseSideNav
   },
+  // 设置AuthCode
+  setAuthCode (state, authorization) {
+    state.authCode = authorization
+    sessionStorage.setItem('auth', state.authCode)
+  },
   // 设置提示信息
-  showToast (state, payload) {
-    state.toast.show = true
-    state.toast.time = payload.time || 2000
-    state.toast.type = payload.type || 'success'
-    state.toast.text = payload.text || ''
+  showMessage (state, payload) {
+    if (payload.message) {
+      Message({
+        message: payload.message,
+        type: payload.type,
+        duration: payload.duration || 3000,
+        showClose: payload.duration || true,
+        center: payload.center || false,
+        onClose: payload.onClose,
+        customClass: payload.customClass,
+        iconClass: payload.iconClass,
+        dangerouslyUseHTMLString: payload.dangerouslyUseHTMLString
+      })
+    }
   },
   // 隐藏提示信息
   hideToast (state) {
     state.toast.show = false
+  },
+  // 设置导航菜单
+  setNavMenus (state, payload) {
+    state.navMenus = payload
+    sessionStorage.setItem('nav', JSON.stringify(payload))
   },
   // 设置加载中信息
   showLoading (state, payload) {

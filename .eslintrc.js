@@ -15,6 +15,10 @@ module.exports = {
   plugins: [
     'html'
   ],
+  globals: {
+    'AMap': true,
+    'AMapUI': true
+  },
   // add your custom rules here
   'rules': {
     // allow paren-less arrow functions

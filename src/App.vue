@@ -1,28 +1,26 @@
 <template>
-  <el-container direction="vertical" id="app">
+  <div>
     <vue-progress-bar></vue-progress-bar>
-    <rtHeader></rtHeader>
-    <div direction="horizontal">
-      <el-container direction="vertical">
-        <el-main>
-          <router-view></router-view>
-        </el-main>
-        <rtFooter></rtFooter>
-      </el-container>
-    </div>
-  </el-container>
+    <el-container direction="vertical" id="app">
+      <rtHeader></rtHeader>
+      <el-main class="main-wrap">
+        <router-view></router-view>
+      </el-main>
+      <rtFooter></rtFooter>
+    </el-container>
+  </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import { mapState, mapMutations } from 'vuex'
 import { Container, Main } from 'element-ui'
-import 'font-awesome/css/font-awesome.css'
-import rtHeader from './components/Header'
-import rtFooter from './components/Footer'
+import rtHeader from './components/page/Header'
+import rtFooter from './components/page/Footer'
 
 Vue.use(Container)
 Vue.use(Main)
+
 export default {
   name: 'app',
   components: {
@@ -40,19 +38,19 @@ export default {
     ])
   },
   beforeMount () {
-    const { body } = document
-    const minDesktopWidth = 784
-    const deviceChange = () => {
-      if (!document.hidden) {
-        let rect = body.getBoundingClientRect()
-        this.setDevice({
-          isMobile: rect.width < minDesktopWidth
-        })
-      }
-    }
-    document.addEventListener('visibilitychange', deviceChange)
-    window.addEventListener('DOMContentLoaded', deviceChange)
-    window.addEventListener('resize', deviceChange)
+    // const { body } = document
+    // const minDesktopWidth = 784
+    // const deviceChange = () => {
+    //   if (!document.hidden) {
+    //     let rect = body.getBoundingClientRect()
+    //     this.setDevice({
+    //       isMobile: rect.width < minDesktopWidth
+    //     })
+    //   }
+    // }
+    // document.addEventListener('visibilitychange', deviceChange)
+    // window.addEventListener('DOMContentLoaded', deviceChange)
+    // window.addEventListener('resize', deviceChange)
   },
   mounted () {
     //  [App.vue specific] When App.vue is finish loading finish the progress bar
@@ -99,3 +97,11 @@ blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html
   color: #2c3e50;
 }
 </style>
+<style scoped>
+.main-wrap {
+  min-height: calc(100vh - 80px);
+  padding: 10px;
+  background-color: #F8F8F8;
+}
+</style>
+

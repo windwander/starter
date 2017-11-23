@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import store from '../store'
 import setTitle from '../utils/setTitle.js'
-import Overview from '@/components/Overview'
+import Home from '@/pages/Home'
+import Login from '@/pages/Login'
+import Overview from '@/pages/Overview'
 import BasicData from '@/components/BasicData'
 import Optimization from '@/components/Optimization'
 import IntelligentCustomer from '@/components/Intelligent/Customer'
@@ -16,17 +19,31 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
+      component: Home,
+      meta: {
+        title: '首页'
+        // progress: {
+        //   func: [
+        //     {call: 'color', modifier: 'temp', argument: '#ffb000'},
+        //     {call: 'fail', modifier: 'temp', argument: '#6e0000'},
+        //     {call: 'location', modifier: 'temp', argument: 'bottom'},
+        //     {call: 'transition', modifier: 'temp', argument: {speed: '1.5s', opacity: '0.6s', termination: 400}}
+        //   ]
+        // }
+      }
+    }, {
+      path: '/login',
+      name: 'Login',
+      component: Login,
+      meta: {
+        title: '用户登录'
+      }
+    }, {
+      path: '/overview',
+      name: 'Overview',
       component: Overview,
       meta: {
-        title: '首页',
-        progress: {
-          func: [
-            {call: 'color', modifier: 'temp', argument: '#ffb000'},
-            {call: 'fail', modifier: 'temp', argument: '#6e0000'},
-            {call: 'location', modifier: 'temp', argument: 'bottom'},
-            {call: 'transition', modifier: 'temp', argument: {speed: '1.5s', opacity: '0.6s', termination: 400}}
-          ]
-        }
+        title: '全局概览'
       }
     }, {
       path: '/BasicData',
@@ -81,8 +98,23 @@ const router = new Router({
     }
   ]
 })
+// router.beforeEach((to, from, next) => {
+//   console.log(to)
+//   console.log(from)
+//   if (to.name !== 'Login') {
+//     if (store.state) { // .authCode
+//       next()
+//     } else {
+//       router.push({
+//         name: 'Login'
+//       })
+//     }
+//   } else {
+//     next()
+//   }
+// })
 router.afterEach(route => {
-  let title = route.meta.title
+  let title = route.meta.title + ' - 如亭城配智能排线系统'
   setTitle(title)
 })
 export default router
